@@ -1,21 +1,18 @@
-import babel from 'rollup-plugin-babel';
+import tsc from 'rollup-plugin-tsc';
 import uglify from 'rollup-plugin-uglify';
-import externalHelpers from 'babel-plugin-external-helpers';
 import path from 'path';
 
 const plugins = [
-  babel({
-    babelrc: false,
-    presets: [
-      [
-        'es2015',
-        {
-          modules: false
-        }
-      ]
-    ],
-    plugins: [externalHelpers],
-    exclude: 'node_modules/**'
+  tsc({
+    compilerOptions: {
+      target: 'es2015',
+      checkJs: true,
+      sourceMap: true,
+      removeComments: true,
+      module: 'es2015',
+      allowJs: true
+    },
+    include: ['spec/**/*', 'src/**/*']
   }),
   uglify()
 ];
