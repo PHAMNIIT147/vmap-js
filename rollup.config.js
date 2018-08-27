@@ -2,8 +2,13 @@ import babel from 'rollup-plugin-babel';
 import uglify from 'rollup-plugin-uglify';
 import externalHelpers from 'babel-plugin-external-helpers';
 import path from 'path';
+import flow from 'rollup-plugin-flow';
 
 const plugins = [
+  flow({
+    all: true,
+    pretty: true,
+  }),
   babel({
     babelrc: false,
     presets: [
